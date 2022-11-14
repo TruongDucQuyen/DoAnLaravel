@@ -18,8 +18,8 @@ class BaiDang extends Model
         'noi_mat',
         'thong_tin_lien_he',
         'user_id',
-        'thoi_gian'
-        //'anh',
-        //'path'
+        'thoi_gian',
+        'hinh_anh',
+        'path'
     ];
 }

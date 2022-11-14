@@ -7,6 +7,9 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Free HTML Templates" name="keywords">
     <meta content="Free HTML Templates" name="description">
+    <link rel="stylesheet" href="/profile/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Favicon -->
     <link href="/template/img/favicon.ico" rel="icon">
@@ -28,6 +31,73 @@
 <body>
     <!-- Topbar Start -->
     <div class="container-fluid d-none d-lg-block">
+        <?php 
+            try{
+                $check=Auth::user()->id;
+        ?>
+        <div class="row align-items-center bg-dark px-lg-5">
+            <div class="col-lg-3 text-right d-none d-md-block">
+                <nav class="navbar navbar-expand-sm bg-dark p-0">
+                    <ul class="navbar-nav ml-n2">
+                        <li class="nav-item border-right border-secondary">
+                            <a class="nav-link text-body small" href="{{route('profile')}}">{{Auth::user()->ten_dang_nhap}}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-body small" href="{{route('dang-xuat')}}">Thoát</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <style>
+            .row{
+                text-align:center;
+            }
+        </style>
+        <div class="row align-items-center bg-white py-3 px-lg-5">
+            <h1 class="h1">TÌM ĐỒ THẤT LẠC</h1>
+        </div>
+    </div>
+    <!-- Topbar End -->
+
+
+    <!-- Navbar Start -->
+    <div class="container-fluid p-0">
+        <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-2 py-lg-0 px-lg-5">
+            <a href="index.html" class="navbar-brand d-block d-lg-none">
+                <h1 class="m-0 display-4 text-uppercase text-primary">Biz<span class="text-white font-weight-normal">News</span></h1>
+            </a>
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-between px-0 px-lg-3" id="navbarCollapse">
+                <div class="navbar-nav mr-auto py-0">
+                    <a href="{{route('trang-chu')}}" class="nav-item nav-link active">Trang Chủ</a>
+                    <a href="{{route('dang-bai')}}" class="nav-item nav-link">Đăng Bài</a>
+                    <a href="single.html" class="nav-item nav-link">Tin Tức</a>
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Danh Mục</a>
+                        <div class="dropdown-menu rounded-0 m-0">
+                            <a href="#" class="dropdown-item">Menu item 1</a>
+                            <a href="#" class="dropdown-item">Menu item 2</a>
+                            <a href="#" class="dropdown-item">Menu item 3</a>
+                        </div>
+                    </div>
+                    <a href="contact.html" class="nav-item nav-link">Liên Hệ</a>
+                </div>
+                <div class="input-group ml-auto d-none d-lg-flex" style="width: 100%; max-width: 300px;">
+                    <input type="text" class="form-control border-0" placeholder="Keyword">
+                    <div class="input-group-append">
+                        <button class="input-group-text bg-primary text-dark border-0 px-3"><i
+                                class="fa fa-search"></i></button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+        <?php 
+            }catch(Exception $e){
+        ?>
         <div class="row align-items-center bg-dark px-lg-5">
             <div class="col-lg-3 text-right d-none d-md-block">
                 <nav class="navbar navbar-expand-sm bg-dark p-0">
@@ -38,9 +108,9 @@
                         <li class="nav-item">
                             <a class="nav-link text-body small" href="{{route('dang-ky')}}">Đăng Ký</a>
                         </li>
-                       <!-- <li class="nav-item">
+                       <li class="nav-item">
                             <a class="nav-link text-body small" href="{{route('dang-xuat')}}">Thoát</a>
-                        </li> -->
+                        </li>
                     </ul>
                 </nav>
             </div>
@@ -91,6 +161,7 @@
             </div>
         </nav>
     </div>
+    <?php }?>
     <!-- Navbar End -->
 
 
@@ -129,7 +200,7 @@
                             <div class="card">
                                  <h2>{{$data->tieu_de}}</h2>
                                  <p>{{$data->noi_dung}}</p>
-                                <a href="{{route('chi-tiet-bai-dang')}}">Xem them</a>
+                                <a href="#">Xem them</a>
                             </div>
             </div>
             </div>

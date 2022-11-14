@@ -18,16 +18,16 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Route::get('/',[HomeController::class,'index'])->name('trang-chu');
-Route::get('home-login',[HomeController::class,'index1'])->name('home-login');
+//Route::get('home-login',[HomeController::class,'index'])->name('home-login');
 Route::get('dang-nhap',[HomeController::class,'dangNhap'])->name('dang-nhap')->middleware('guest');
-Route::post('dang-nhap',[HomeController::class,'xuLyDangNhap'])->name('xl-dang-nhap')->middleware('guest');
+Route::post('/',[HomeController::class,'xuLyDangNhap'])->name('xl-dang-nhap')->middleware('guest');
 Route::get('dang-ky',[HomeController::class,'dangKy'])->name('dang-ky')->middleware('guest');
 Route::post('xl-dang-ky',[HomeController::class,'xuLyDangKy'])->name('xl-dang-ky')->middleware('guest');
 Route::get('dang-xuat',[HomeController::class,'dangXuat'])->name('dang-xuat')->middleware('auth');
+Route::get('thong-tin',[HomeController::class,'profile'])->name('profile');
 
 Route::get('dang-bai',[BaiDangController::class,'create'])->name('dang-bai');
 Route::post('dang-bai',[BaiDangController::class,'store'])->name('xl-dang-bai');
-Route::get('chi-tiet-bai-dang/',[BaiDangController::class,'profile'])->name('chi-tiet-bai-dang');
 
 Route::get('/dashboard',[AdminController::class,'index'])->name('AdminHome');
 Route::get('/dangky',[AdminController::class,'dangKy'])->name('dangky');

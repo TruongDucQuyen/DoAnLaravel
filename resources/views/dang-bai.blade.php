@@ -7,6 +7,9 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Free HTML Templates" name="keywords">
     <meta content="Free HTML Templates" name="description">
+    <link rel="stylesheet" href="/profile/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Favicon -->
     <link href="/template/img/favicon.ico" rel="icon">
@@ -45,7 +48,7 @@
                 <nav class="navbar navbar-expand-sm bg-dark p-0">
                     <ul class="navbar-nav ml-n2">
                         <li class="nav-item border-right border-secondary">
-                            <a class="nav-link text-body small" href="">{{Auth::user()->ten_dang_nhap}}</a>
+                            <a class="nav-link text-body small" href="{{route('profile')}}">{{Auth::user()->ten_dang_nhap}}</a>
                         </li>
                         <li class="nav-item">
                         <a class="nav-link text-body small" href="{{route('dang-xuat')}}">Thoát</a>
@@ -76,7 +79,7 @@
             </button>
             <div class="collapse navbar-collapse justify-content-between px-0 px-lg-3" id="navbarCollapse">
                 <div class="navbar-nav mr-auto py-0">
-                    <a href="{{route('home-login')}}" class="nav-item nav-link">Trang Chủ</a>
+                    <a href="{{route('trang-chu')}}" class="nav-item nav-link">Trang Chủ</a>
                     <a href="{{route('dang-bai')}}" class="nav-item nav-link active">Đăng Bài</a>
                     <a href="single.html" class="nav-item nav-link">Tin Tức</a>
                     <div class="nav-item dropdown">
@@ -112,7 +115,7 @@
 </style>
     <h1 style="text-align:center">Thông Tin Bài Đăng</h1>
     <div class="baidang">
-        <form action="{{route('xl-dang-bai')}}" method="POST">
+        <form action="{{route('xl-dang-bai')}}"  enctype="multipart/form-data" method="POST">
         @csrf
             <div class="form-group">
                 <h5>Tiêu đề :  <input type="text" class="ml-2" name="tieu_de"></h5>
@@ -133,8 +136,15 @@
                 <h5>Thông tin liên hệ : </h5>
                 <textarea name="thong_tin_lien_he" id="" cols="37" rows="3"></textarea>
             </div>
+            <div id="content-2">
+                    <h4 class="tm-text-primary mt-2">Chọn hình</h4>
+                        
+                        <img src="" alt="" id="image" width="250px" height="250px">
+                        <input type="file" id="imageFile" name="image" onchange="chooseFile(this)" accept="image/gif, image/jpeg, image/png, image/jpg">
+                    
+                </div>
             <div class="form-group tm-text-right">
-                        <button type="submit" class="btn btn-primary">Đăng Bài</button>
+                        <button type="submit" class="btn btn-primary mt-3">Đăng Bài</button>
             </div>
         </form>
     </div>

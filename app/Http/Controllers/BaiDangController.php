@@ -46,17 +46,17 @@ class BaiDangController extends Controller
             'thong_tin_lien_he'=>$request->thong_tin_lien_he,
             'user_id'=>(Auth::user()->id),
             'thoi_gian'=>Carbon::now(),
-            /*'anh' => $request->file('image')->getClientOriginalName(),
+            'hinh_anh' => $request->file('image')->getClientOriginalName(),
             'path' => $request->file('image')->store('public/images'),
             $file = $request->image,
             $file_name = $file->getClientOriginalName(),
             $file->move(public_path('images'), $file_name),
-            $request->merge(['image' => $file_name]),*/
+            $request->merge(['image' => $file_name]),
         ]);
         if(!empty($baiDang)){
             #quay về trang danh sách tin tức
             //return view('home-login',compact('lsBaiDang'));
-            return redirect()->route('home-login');
+            return redirect()->route('trang-chu');
         }
         #Thông báo thêm không thành công
         return redirect()->route('trang-chu');
@@ -80,10 +80,7 @@ class BaiDangController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function profile($id){
-        $lsBaiDang=BaiDang::find($id);
-        return view('chi-tiet-bai-dang',compact('lsBaiDang'));
-    }
+   
     public function edit($id)
     {
         //

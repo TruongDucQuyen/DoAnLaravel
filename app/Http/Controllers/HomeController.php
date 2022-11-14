@@ -9,28 +9,26 @@ use App\Models\BaiDang;
 use App\Http\Requests\DangNhapRequest;
 use App\Http\Requests\DangKyRequest;
 
+
 class HomeController extends Controller
 {
     public function index(){
-        $lsBaiDang=BaiDang::all();
+        $lsBaiDang=BaiDang::all()->sortByDesc('id');
         return view('trang-chu',compact('lsBaiDang'));
-    }
-    public function index1(){
-        $lsBaiDang=BaiDang::all();
-        return view('home-login',compact('lsBaiDang'));
     }
     public function dangNhap(){
         return view('dang-nhap');
     }
     public function xuLyDangNhap(DangNhapRequest $request)
     {
-        $lsBaiDang=BaiDang::all();
+        $lsBaiDang=BaiDang::all()->sortByDesc('id');
         $credentials =[
             'ten_dang_nhap' => $request ->ten_dang_nhap,
             'password' => $request ->password,
             ];
         if(Auth::attempt($credentials)&&(Auth::user()->userType=='URS')){
-            return view('home-login',compact('lsBaiDang'));
+            //return view('trang-chu',compact('lsBaiDang'));
+            return redirect()->route('trang-chu');
         }
         else if(Auth::attempt($credentials)&&(Auth::user()->userType=='ADM')){
             return redirect()->route('AdminHome');
@@ -63,6 +61,8 @@ class HomeController extends Controller
        return redirect()->route('trang-chu');
     }
     public function profile(){
-        return view('thong-tin-ca-nhan');
+        $lsBaiDang=BaiDang::paginate(4);
+        //$lsBaiDang->sortByDesc('id');
+        return view('thong-tin-ca-nhan',compact('lsBaiDang'));
     }
 }

@@ -7,6 +7,9 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Free HTML Templates" name="keywords">
     <meta content="Free HTML Templates" name="description">
+    <link rel="stylesheet" href="/profile/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Favicon -->
     <link href="/template/img/favicon.ico" rel="icon">
@@ -65,7 +68,7 @@
             </button>
             <div class="collapse navbar-collapse justify-content-between px-0 px-lg-3" id="navbarCollapse">
                 <div class="navbar-nav mr-auto py-0">
-                    <a href="{{route('home-login')}}" class="nav-item nav-link">Trang Chủ</a>
+                    <a href="{{route('trang-chu')}}" class="nav-item nav-link">Trang Chủ</a>
                     <a href="{{route('dang-bai')}}" class="nav-item nav-link">Đăng Bài</a>
                     <a href="single.html" class="nav-item nav-link">Single News</a>
                     <div class="nav-item dropdown">
@@ -92,7 +95,62 @@
 
 
     <!-- Main News Slider Start -->
-    <h1>AAAAAAAAAAAA</h1>
+    <div class="container rounded bg-white mt-5 mb-5">
+        <div class="row">
+            <div class="col-md-3 border-right">
+                <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"><span class="font-weight-bold">{{Auth::user()->ten_dang_nhap}}</span><span class="text-black-50">{{Auth::user()->email}}</span><span> </span></div>
+            </div>
+            <div class="col-md-5 border-right">
+                <div class="p-3 py-5">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h4 class="text-right">Thông Tin Tài Khoản</h4>
+                    </div>
+                    <div class="row mt-3" style="text-align:left">
+                        <div class="col-md-12 color"><p class="labels">Họ tên : <span class="ml-3"> {{Auth::user()->ho_ten}}</span></p></div>
+                        <div class="col-md-12 color"><p class="labels">Địa chỉ :
+                            <?php 
+                                if(Auth::user()->address!=null){
+                            ?>
+                            <span class="ml-3"> {{Auth::user()->address}}</span>
+                            <?php } else {
+                            ?>
+                            <span class="ml-3"> Chưa có thông tin</span>
+                            <?php }?>
+                        </p></div>
+                        <div class="col-md-12 color"><p class="labels">Số điện thoại : <span class="ml-3"> {{Auth::user()->phone}}</span></p></div>
+                    </div>
+                    <div class="mt-5 text-center"><a href="">Chỉnh sửa thông tin</a></div>
+                </div>
+            </div>
+            <div class="col-md-4 color">
+                <div class="p-3 py-5">
+                    <div class="d-flex justify-content-between align-items-center experience"><span>Bài đã đăng</span></div><br>
+                    <?php
+                        foreach ($lsBaiDang as $data) {
+                            if($data->user_id==Auth::user()->id){
+                    ?>
+                    @csrf
+                <div class="container mb-2" >
+                    <div id="#list-comon">
+                        <div class="item">
+                            <div class="card">
+                                 <h2>{{$data->tieu_de}}</h2>
+                                 <p>{{$data->noi_dung}}</p>
+                                <a href="#">Xem them</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <?php } }?>
+                </div>
+                <div class="pagination">
+                    {{$lsBaiDang->links('vendor\pagination\bootstrap-4')}}
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
 
     <!-- News With Sidebar End -->
 
@@ -210,6 +268,8 @@
 
     <!-- Template Javascript -->
     <script src="/template/js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </body>
 
 </html>
