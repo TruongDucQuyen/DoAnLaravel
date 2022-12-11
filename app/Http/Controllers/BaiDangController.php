@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use App\Models\BinhLuan;
 use App\Models\TinTuc;
+use RealRashid\SweetAlert\Facades\Aler;
 
 class BaiDangController extends Controller
 {
@@ -128,6 +129,7 @@ class BaiDangController extends Controller
         $file->move(public_path('images'), $file_name);
         $request->merge(['image' => $file_name]);
         $baiDang->save();
+        toast('Chỉnh Sửa Bài Viết Thành Công','success');
         return redirect()->route('chi-tiet-bai-dang',['id'=>$baiDang->id]);
     }
 
