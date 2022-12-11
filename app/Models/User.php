@@ -17,7 +17,9 @@ class User extends Authenticatable
         'mat_khau',
         'ho_ten',
         'email',
-        'userType'
+        'userType',
+        'image',
+        'path'
     ];
     public function getPasswordAttribute(){
         return $this->mat_khau;

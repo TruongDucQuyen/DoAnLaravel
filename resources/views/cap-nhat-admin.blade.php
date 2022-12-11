@@ -14,8 +14,9 @@
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto:wght@500;700&display=swap" rel="stylesheet"> 
-    
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto:wght@500;700&display=swap"
+        rel="stylesheet">
+
     <!-- Icon Font Stylesheet -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
@@ -29,12 +30,25 @@
 
     <!-- Template Stylesheet -->
     <link href="/admin/css/style.css" rel="stylesheet">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
+    <script src="sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="sweetalert2.min.css">
+    <script src="sweetalert2.all.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+    </script>
+    <script src="https://code.jquery.com/jquery-3.6.1.js"
+        integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
 </head>
 
 <body>
+    
     <div class="container-fluid position-relative d-flex p-0">
         <!-- Spinner Start -->
-        <div id="spinner" class="show bg-dark position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div id="spinner"
+            class="show bg-dark position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
             <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
                 <span class="sr-only">Loading...</span>
             </div>
@@ -50,28 +64,38 @@
                 </a>
                 <div class="d-flex align-items-center ms-4 mb-4">
                     <div class="position-relative">
-                        <img class="rounded-circle" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
-                        <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
+                        <img class="rounded-circle" src="{{asset('avatars/')}}/{{Auth::user()->image}}" alt=""
+                            style="width: 40px; height: 40px;">
+                        <div
+                            class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1">
+                        </div>
                     </div>
                     <div class="ms-3">
-                    <h6 class="mb-0">{{Auth::user()->ho_ten}}</h6>
+                        <h6 class="mb-0">{{Auth::user()->ho_ten}}</h6>
                         <span>Admin</span>
                     </div>
                 </div>
                 <div class="navbar-nav w-100">
-                    <a href="index.html" class="nav-item nav-link"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
+                    <a href="{{route('AdminHome')}}" class="nav-item nav-link"><i
+                            class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
                     <div class="nav-item dropdown active">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Danh sách tài khoản</a>
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
+                                class="fa fa-laptop me-2"></i>Danh sách tài khoản</a>
                         <div class="dropdown-menu bg-transparent border-0">
-                            <a href="{{route('danh-sach-admin')}}" class="dropdown-item">Admin</a>
-                            <a href="typography.html" class="dropdown-item">Users</a>
+                            <a href="{{route('danh-sach-admin')}}" class="dropdown-item nav-item nav-link active">Admin</a>
+                            <a href="{{route('danh-sach-user')}}" class="dropdown-item">Users</a>
                         </div>
                     </div>
-                    <a href="{{'danh-sach-bai-viet-admin'}}" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Danh sách bài viết</a>
-                    <a href="form.html" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Forms</a>
-                    <a href="table.html" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Tables</a>
-                    <a href="chart.html" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Charts</a>
-                    <a href="{{route('dangky')}}" class="nav-item nav-link"><i class="far fa-file-alt me-2"></i>Đăng ký</a>
+                    <a href="{{route('danh-sach-bai-viet-admin')}}" class="nav-item nav-link"><i
+                            class="fa fa-th me-2"></i>Danh sách bài viết</a>
+                    <a href="{{route('danh-sach-tin-tuc-admin')}}" class="nav-item nav-link"><i
+                            class="fa fa-keyboard me-2"></i>Danh sách tin tức</a>
+                    <a href="{{route('dang-tin-tuc-admin')}}" class="nav-item nav-link"><i
+                            class="fa fa-table me-2"></i>Đăng tin tức mới</a>
+                            <a href="{{route('danh-sach-report')}}" class="nav-item nav-link"><i
+                            class="fa fa-chart-bar me-2"></i>Report</a>
+                    <a href="{{route('dangky')}}" class="nav-item nav-link"><i class="far fa-file-alt me-2"></i>Đăng
+                        ký</a>
                 </div>
             </nav>
         </div>
@@ -88,8 +112,9 @@
                 <a href="#" class="sidebar-toggler flex-shrink-0">
                     <i class="fa fa-bars"></i>
                 </a>
-                <form class="d-none d-md-flex ms-4">
-                    <input class="form-control bg-dark border-0" type="search" placeholder="Search">
+                <form class="d-none d-md-flex ms-4" action="{{route('xl-tim-kiem-admin')}}" method="POST">
+                    @csrf
+                    <input class="form-control bg-dark border-0" type="search" placeholder="Search" name="search">
                 </form>
                 <div class="navbar-nav align-items-center ms-auto">
                     <div class="nav-item dropdown">
@@ -100,7 +125,8 @@
                         <div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
                             <a href="#" class="dropdown-item">
                                 <div class="d-flex align-items-center">
-                                    <img class="rounded-circle" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
+                                    <img class="rounded-circle" src="img/user.jpg" alt=""
+                                        style="width: 40px; height: 40px;">
                                     <div class="ms-2">
                                         <h6 class="fw-normal mb-0">Jhon send you a message</h6>
                                         <small>15 minutes ago</small>
@@ -110,7 +136,8 @@
                             <hr class="dropdown-divider">
                             <a href="#" class="dropdown-item">
                                 <div class="d-flex align-items-center">
-                                    <img class="rounded-circle" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
+                                    <img class="rounded-circle" src="img/user.jpg" alt=""
+                                        style="width: 40px; height: 40px;">
                                     <div class="ms-2">
                                         <h6 class="fw-normal mb-0">Jhon send you a message</h6>
                                         <small>15 minutes ago</small>
@@ -120,7 +147,8 @@
                             <hr class="dropdown-divider">
                             <a href="#" class="dropdown-item">
                                 <div class="d-flex align-items-center">
-                                    <img class="rounded-circle" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
+                                    <img class="rounded-circle" src="img/user.jpg" alt=""
+                                        style="width: 40px; height: 40px;">
                                     <div class="ms-2">
                                         <h6 class="fw-normal mb-0">Jhon send you a message</h6>
                                         <small>15 minutes ago</small>
@@ -174,47 +202,49 @@
             <div class="container pt-4 px-4">
                 <div class="row g-4">
                     <div class="">
-                    <h1>CHỈNH SỬA TÀI KHOẢN {{$adMin->ten_dang_nhap}}</h1>
-                    <br>    
-<form action="{{route('admin.xl-cap-nhat',['id'=>$adMin->id])}}" method="POST">
-    @csrf
-    <table class="border border-dark">
-        <tr>
-            <td>Tên đăng nhập</td>
-            <td>
-                <input type="text" name="ten_dang_nhap" value="{{$adMin->ten_dang_nhap}}">
-            </td>
-            <tr>
-            <td>Họ tên</td>
-            <td>
-                <input type="text" name="ho_ten" value="{{$adMin->ho_ten}}">
-            </td>
-            </tr>
-            <tr>
-            <td>Email</td>
-            <td>
-                <input type="text" name="email" value="{{$adMin->email}}">
-            </td>
-            </tr>
-            <tr>
-            <td>Địa chỉ</td>
-            <td>
-                <input type="text" name="address" value="{{$adMin->address}}">
-            </td>
-            </tr>
-            <tr>
-            <td>Điện thoại</td>
-            <td>
-                <input type="text" name="phone" value="{{$adMin->phone}}">
-            </td>
-            </tr>
-        </tr>
-        <tr>
-            <td></td>
-            <td><button type="submit" class="btn btn-primary mt-3">Lưu</button></td>
-        </tr>
-    </table>
-</form>
+                        <div class="bg-secondary rounded h-100 p-4">
+                            <h1>CHỈNH SỬA TÀI KHOẢN {{$adMin->ten_dang_nhap}}</h1>
+                            <br>
+                            <form action="{{route('admin.xl-cap-nhat',['id'=>$adMin->id])}}" method="POST">
+                                @csrf
+                                <table>
+                                    <tr>
+                                        <td>Tên đăng nhập</td>
+                                        <td>
+                                            <input type="text" name="ten_dang_nhap" value="{{$adMin->ten_dang_nhap}}">
+                                        </td>
+                                    <tr>
+                                        <td>Họ tên</td>
+                                        <td>
+                                            <input type="text" name="ho_ten" value="{{$adMin->ho_ten}}">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Email</td>
+                                        <td>
+                                            <input type="text" name="email" value="{{$adMin->email}}">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Địa chỉ</td>
+                                        <td>
+                                            <input type="text" name="address" value="{{$adMin->address}}">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Điện thoại</td>
+                                        <td>
+                                            <input type="text" name="phone" value="{{$adMin->phone}}">
+                                        </td>
+                                    </tr>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td><button type="submit" class="btn btn-primary mt-3">Lưu</button></td>
+                                    </tr>
+                                </table>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -226,7 +256,7 @@
                 <div class="bg-secondary rounded-top p-4">
                     <div class="row">
                         <div class="col-12 col-sm-6 text-center text-sm-start">
-                            &copy; <a href="#">Your Site Name</a>, All Right Reserved. 
+                            &copy; <a href="#">Your Site Name</a>, All Right Reserved.
                         </div>
                         <div class="col-12 col-sm-6 text-center text-sm-end">
                             <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->

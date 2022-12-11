@@ -13,6 +13,7 @@ class DangKyRequest extends FormRequest
      */
     public function authorize()
     {
+        toast('Lỗi','error');
         return true;
     }
 

@@ -18,6 +18,9 @@ class BaiDang extends Model
         'noi_mat',
         'thong_tin_lien_he',
         'user_id',
+        'trang_thai',
+        'avatar_author',
+        'ten_nguoi_dang',
         'thoi_gian',
         'hinh_anh',
         'path'

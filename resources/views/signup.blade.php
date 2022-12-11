@@ -14,8 +14,9 @@
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto:wght@500;700&display=swap" rel="stylesheet"> 
-    
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto:wght@500;700&display=swap"
+        rel="stylesheet">
+
     <!-- Icon Font Stylesheet -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
@@ -29,12 +30,33 @@
 
     <!-- Template Stylesheet -->
     <link href="/admin/css/style.css" rel="stylesheet">
+    <script>
+    function chooseFile(fileInput) {
+        if (fileInput.files && fileInput.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function(e) {
+                $('#image').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(fileInput.files[0]);
+        }
+    }
+    </script>
+    <style>
+    .alert {
+        color: red;
+        padding-left: 3px;
+        padding-top: 3px;
+        font-size: 12px;
+    }
+    </style>
 </head>
 
 <body>
     <div class="container-fluid position-relative d-flex p-0">
         <!-- Spinner Start -->
-        <div id="spinner" class="show bg-dark position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div id="spinner"
+            class="show bg-dark position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
             <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
                 <span class="sr-only">Loading...</span>
             </div>
@@ -44,61 +66,81 @@
 
         <!-- Sign Up Start -->
         <div class="container-fluid">
-            <div  class="register-form">
-                <form action="{{ route('xl-dangky')}}"  method="post">
+            <div class="register-form">
+                <form action="{{ route('xl-dangky')}}" enctype="multipart/form-data" method="post">
                     @csrf
-                <div class="row h-100 align-items-center justify-content-center" style="min-height: 100vh;">
-                <div class="col-12 col-sm-8 col-md-6 col-lg-5 col-xl-4">
-                    <div class="bg-secondary rounded p-4 p-sm-5 my-4 mx-3">
-                        <div class="d-flex align-items-center justify-content-between mb-3">
-                            <a href="index.html" class="">
-                                <h3 class="text-primary"><i class="fa fa-user-edit me-2"></i>DarkPan</h3>
-                            </a>
-                            <h3>Sign Up</h3>
+                    <div class="row h-100 align-items-center justify-content-center" style="min-height: 100vh;">
+                        <div class="col-12 col-sm-8 col-md-6 col-lg-5 col-xl-4">
+                            <div class="bg-secondary rounded p-4 p-sm-5 my-4 mx-3">
+                                <div class="d-flex align-items-center justify-content-between mb-3">
+                                    <a href="index.html" class="">
+                                        <h3 class="text-primary"><i class="fa fa-user-edit me-2"></i>DarkPan</h3>
+                                    </a>
+                                    <h3>Sign Up</h3>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" id="floatingText" placeholder="jhondoe"
+                                        name="ho_ten" class="@error('ho_ten') is-invalid @enderror">
+                                    @error('ho_ten')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
+                                    <label for="floatingText">Họ tên</label>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" id="floatingText" placeholder="jhondoe"
+                                        name="ten_dang_nhap" class="@error('ten_dang_nhap') is-invalid @enderror">
+                                    <label for="floatingText">Tên đăng nhập</label>
+                                    @error('ten_dang_nhap')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
+                                    @if(session('message'))
+                                    <div class="alert alert-danger">{{@session('message')}}</div>
+                                    @endif
+                                </div>
+                                <div class="form-floating mb-4">
+                                    <input type="password" class="form-control" id="floatingPassword"
+                                        placeholder="Password" name="mat_khau"
+                                        class="@error('mat_khau') is-invalid @enderror">
+                                    <label for="floatingPassword">Mật khẩu</label>
+                                    @error('mat_khau')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="form-floating mb-4">
+                                    <input type="password" class="form-control" id="floatingPassword"
+                                        placeholder="ConfirmPassword" name="confirm_mat_khau"
+                                        class="@error('confirm_mat_khau') is-invalid @enderror">
+                                    <label for="floatingPassword">Xác nhận mật khẩu</label>
+                                    @error('confirm_mat_khau')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input type="email" class="form-control" id="floatingInput"
+                                        placeholder="name@example.com" name="email"
+                                        class="@error('email') is-invalid @enderror">
+                                    <label for="floatingInput">Email</label>
+                                    @error('email')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
+                                    @if(session('message1'))
+                                    <div class="alert alert-danger">{{@session('message1')}}</div>
+                                    @endif
+                                </div>
+                                <div id="content-2">
+                                    <h4 class="tm-text-primary mt-2">Avatar</h4>
+                                    <img src="" alt="" id="image" width="250px" height="250px" class="mt-2 mb-2">
+                                    <input type="file" id="imageFile" name="image" onchange="chooseFile(this)"
+                                        accept="image/gif, image/jpeg, image/png, image/jpg">
+                                </div>
+                                <div class="d-flex align-items-center justify-content-between mb-4 mt-4">
+                                    <a href="">Forgot Password</a>
+                                </div>
+                                <button type="submit" class="btn btn-primary py-3 w-100 mb-4">Sign Up</button>
+                                <p class="text-center mb-0">Already have an Account? <a href="">Sign In</a></p>
+                            </div>
                         </div>
-                        <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="floatingText" placeholder="jhondoe" name="ho_ten"class="@error('ho_ten') is-invalid @enderror">
-                            @error('ten_dang_nhap')
-                                <div class="alert alert-danger">{{ $message }}</div>
-                            @enderror
-                            <label for="floatingText">Họ tên</label>
-                        </div>
-                        <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="floatingText" placeholder="jhondoe" name="ten_dang_nhap"class="@error('ten_dang_nhap') is-invalid @enderror">
-                            <label for="floatingText">Tên đăng nhập</label>
-                            @error('ten_dang_nhap')
-                                <div class="alert alert-danger">{{ $message }}</div>
-                            @enderror
-                        </div>
-                        <div class="form-floating mb-4">
-                            <input type="password" class="form-control" id="floatingPassword" placeholder="Password"name="mat_khau"class="@error('mat_khau') is-invalid @enderror">
-                            <label for="floatingPassword">Mật khẩu</label>
-                            @error('mat_khau')
-                                <div class="alert alert-danger">{{ $message }}</div>
-                            @enderror
-                        </div>
-                        <div class="form-floating mb-4">
-                            <input type="password" class="form-control" id="floatingPassword" placeholder="ConfirmPassword"name="confirm_mat_khau"class="@error('confirm_mat_khau') is-invalid @enderror">
-                            <label for="floatingPassword">Xác nhận mật khẩu</label>
-                            @error('confirm_mat_khau')
-                                <div class="alert alert-danger">{{ $message }}</div>
-                            @enderror
-                        </div>
-                        <div class="form-floating mb-3">
-                            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" name="email"class="@error('email') is-invalid @enderror">
-                            <label for="floatingInput">Email</label>
-                            @error('email')
-                                <div class="alert alert-danger">{{ $message }}</div>
-                            @enderror
-                        </div>
-                        <div class="d-flex align-items-center justify-content-between mb-4">
-                            <a href="">Forgot Password</a>
-                        </div>
-                        <button type="submit" class="btn btn-primary py-3 w-100 mb-4">Sign Up</button>
-                        <p class="text-center mb-0">Already have an Account? <a href="">Sign In</a></p>
                     </div>
-                </div>
-            </div>
                 </form>
             </div>
         </div>
